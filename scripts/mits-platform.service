@@ -1,0 +1,27 @@
+[Unit]
+Description=MITS Examination and Coding Challenge Platform
+After=network.target postgresql.service
+Requires=postgresql.service
+
+[Service]
+Type=simple
+User=mitsapp
+Group=mitsapp
+WorkingDirectory=/opt/mits-login
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=5s
+Environment=NODE_ENV=production
+EnvironmentFile=/opt/mits-login/.env
+
+# Hardening measures
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+
+# Resource limits for high-concurrency exam sessions
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

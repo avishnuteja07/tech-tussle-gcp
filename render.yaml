@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: mit-login
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: RUNNER_PREFERENCE
+        value: local,remote
+      - key: PREFER_REMOTE_LANGUAGES
+        value: ""
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB
+        value: mits_login
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: LEVEL_2_PIN
+        sync: false
+      - key: LEVEL_3_PIN
+        sync: false
+      - key: JUDGE0_URL
+        value: https://ce.judge0.com

@@ -1,0 +1,814 @@
+{
+  "tasks": [
+    {
+      "id": "c",
+      "title": "Task 1 · C",
+      "questions": [
+        {
+          "id": "c-1",
+          "prompt": "The program should print the sum of digits of 1234 (expected 10) but prints 1. Fix it.",
+          "code": "int n = 1234, sum = 0;\nwhile (n > 0) {\n    sum = n % 10;\n    n = n / 10;\n}\nprintf(\"%d\", sum);"
+        },
+        {
+          "id": "c-2",
+          "prompt": "Expected output is 25, but the program prints 11.",
+          "code": "#define SQUARE(x) x*x\nprintf(\"%d\", SQUARE(2+3));"
+        },
+        {
+          "id": "c-3",
+          "prompt": "The program should print the largest element (-1), but prints 0.",
+          "code": "int a[5] = {-4, -8, -1, -9, -3}, max = 0;\nfor (int i = 0; i < 5; i++)\n    if (a[i] > max) max = a[i];\nprintf(\"%d\", max);"
+        },
+        {
+          "id": "c-4",
+          "prompt": "This sometimes prints garbage after hello.",
+          "code": "char s[5] = \"hello\";\nprintf(\"%s\", s);"
+        },
+        {
+          "id": "c-5",
+          "prompt": "Expected output is 6, but it prints 5.",
+          "code": "void increment(int x) { x++; }\nint main() {\n    int a = 5;\n    increment(a);\n    printf(\"%d\", a);\n}"
+        }
+      ]
+    },
+    {
+      "id": "dsa",
+      "title": "Task 2 · DSA Using C",
+      "questions": [
+        {
+          "id": "dsa-1",
+          "prompt": "The function should reverse the array, but the array stays unchanged. Fix it.",
+          "code": "for (i = 0; i < n; i++) {\n    t = a[i];\n    a[i] = a[n - 1 - i];\n    a[n - 1 - i] = t;\n}"
+        },
+        {
+          "id": "dsa-2",
+          "prompt": "This selection sort gives wrong results. Fix the bug.",
+          "code": "for (i = 0; i < n - 1; i++) {\n    min = i;\n    for (j = i + 1; j < n; j++)\n        if (a[j] < a[min]) min = a[j];\n    temp = a[i]; a[i] = a[min]; a[min] = temp;\n}"
+        },
+        {
+          "id": "dsa-3",
+          "prompt": "For a = {1, 3} and key = 5, this binary search never terminates. Fix the bounds updates.",
+          "code": "low = 0; high = n - 1;\nwhile (low <= high) {\n    mid = (low + high) / 2;\n    if (a[mid] == key) return mid;\n    else if (a[mid] < key) low = mid;\n    else high = mid;\n}\nreturn -1;"
+        },
+        {
+          "id": "dsa-4",
+          "prompt": "With MAX = 5 and top = -1, the 5th push writes outside the array. Fix the overflow check.",
+          "code": "void push(int x) {\n    if (top == MAX)\n        printf(\"Overflow\");\n    else\n        stack[++top] = x;\n}"
+        },
+        {
+          "id": "dsa-5",
+          "prompt": "After running this, the linked list 1→2→3 is reduced to just node 1. Fix the reversal.",
+          "code": "struct Node *prev = NULL, *cur = head, *next;\nwhile (cur) {\n    cur->next = prev;\n    prev = cur;\n    cur = cur->next;\n}\nhead = prev;"
+        }
+      ]
+    },
+    {
+      "id": "python",
+      "title": "Task 3 · Python",
+      "questions": [
+        {
+          "id": "python-1",
+          "prompt": "The goal is to change b without affecting a, but a also changes. Fix it.",
+          "code": "a = [1, 2, 3]\nb = a\nb.append(4)\nprint(a)"
+        },
+        {
+          "id": "python-2",
+          "prompt": "Only the first row should change, but all rows change. Fix it.",
+          "code": "matrix = [[0] * 3] * 3\nmatrix[0][0] = 1\nprint(matrix)"
+        },
+        {
+          "id": "python-3",
+          "prompt": "count_vowels(\"sky\") should return 0 but returns 3. Fix the condition.",
+          "code": "def count_vowels(s):\n    count = 0\n    for ch in s:\n        if ch == 'a' or 'e' or 'i' or 'o' or 'u':\n            count += 1\n    return count"
+        },
+        {
+          "id": "python-4",
+          "prompt": "Calling update() crashes with UnboundLocalError. Fix it so x becomes 15.",
+          "code": "x = 10\ndef update():\n    x = x + 5\nupdate()\nprint(x)"
+        },
+        {
+          "id": "python-5",
+          "prompt": "The goal is a dictionary of word → length for all 3 words, but only 2 entries appear. Fix it.",
+          "code": "words = [\"apple\", \"bat\", \"cat\"]\nlengths = {}\nfor w in words:\n    lengths[len(w)] = w\nprint(lengths)"
+        }
+      ]
+    },
+    {
+      "id": "dbms",
+      "title": "Task 4 · DBMS",
+      "questions": [
+        {
+          "id": "dbms-1",
+          "prompt": "The query should list each department with its number of employees, but it throws an error. Fix it.",
+          "code": "SELECT name, dept, COUNT(*)\nFROM emp\nGROUP BY dept;"
+        },
+        {
+          "id": "dbms-2",
+          "prompt": "The query should list employees earning above the average salary, but it throws an error. Fix it.",
+          "code": "SELECT name FROM emp WHERE salary > AVG(salary);"
+        },
+        {
+          "id": "dbms-3",
+          "prompt": "The query should show all employees whose salary is above 30000, but it throws a syntax error. Fix it.",
+          "code": "SELECT name salary\nFROM emp\nWHERE salary > 30000;"
+        },
+        {
+          "id": "dbms-4",
+          "prompt": "The query should return employees who have no phone number recorded, but it returns nothing. Fix it.",
+          "code": "SELECT * FROM emp WHERE phone = NULL;"
+        },
+        {
+          "id": "dbms-5",
+          "prompt": "The query should show the highest salary in each department along with the department name, but it throws an error. Fix it.",
+          "code": "SELECT dept, MAX(salary)\nFROM emp\nWHERE MAX(salary) > 40000\nGROUP BY dept;"
+        }
+      ]
+    }
+  ],
+  "level2Tasks": [
+    {
+      "id": "css",
+      "title": "Task 1 · CSS GMOCS Fest Card",
+      "questions": [
+        {
+          "id": "css-1",
+          "prompt": "Write CSS in the blank style block to pass all five checks: center .container with flex in both directions and full-screen height; make .card 250px wide with 20px padding and centered text; give the card a 2px solid #333 border and 10px radius; make .title #1a73e8 and .role #666 italic; style .btn with blue background, white text, no border, 5px radius and 8px padding.",
+          "code": "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { margin: 0; }\n    /* WRITE YOUR CSS HERE */\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"card\">\n      <h2 class=\"title\">GMOCS</h2>\n      <p class=\"role\">National Tech Fest</p>\n      <button class=\"btn\">Register</button>\n    </div>\n  </div>\n</body>\n</html>"
+        }
+      ]
+    },
+    {
+      "id": "traffic-signal",
+      "title": "Task 2 · Smart Traffic Signal",
+      "questions": [
+        {
+          "id": "traffic-1",
+          "prompt": "Complete the missing HTML, CSS, and JavaScript code to create a simple traffic signal simulator. When the user clicks the \"Change Signal\" button, the signal changes to the next color in order: Red -> Yellow -> Green -> Red.",
+          "code": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Traffic Signal</title>\n    <style>\n        body {\n            text-align: center;\n            font-family: Arial, sans-serif;\n            margin: 0;\n            padding: 16px;\n            background: #f8fafc;\n        }\n\n        .signal-card {\n            max-width: 260px;\n            margin: 0 auto;\n            padding: 20px 16px;\n            background: #ffffff;\n            border: 2px solid #e2e8f0;\n            border-radius: 14px;\n            box-shadow: 0 4px 12px rgba(0,0,0,0.06);\n        }\n\n        h2 {\n            font-size: 18px;\n            margin: 0 0 14px;\n            color: #1e293b;\n        }\n\n        .traffic-housing {\n            width: 84px;\n            background: #1e293b;\n            padding: 12px 0;\n            border-radius: 20px;\n            margin: 0 auto 16px;\n            box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);\n        }\n\n        .light {\n            width: 54px;\n            height: 54px;\n            border-radius: 50%;\n            background-color: gray;\n            margin: 8px auto;\n            transition: background-color 0.2s ease;\n        }\n\n        button {\n            padding: 8px 18px;\n            font-size: 14px;\n            font-weight: 600;\n            color: #ffffff;\n            background-color: #2563eb;\n            border: none;\n            border-radius: 6px;\n            cursor: pointer;\n        }\n\n        #message {\n            margin: 12px 0 0;\n            font-size: 14px;\n            font-weight: 600;\n            color: #475569;\n        }\n\n        /* Write CSS here */\n    </style>\n</head>\n<body>\n\n    <div class=\"signal-card\">\n        <h2>Traffic Signal Simulator</h2>\n\n        <div class=\"traffic-housing\">\n            <div id=\"red\" class=\"light\"></div>\n            <div id=\"yellow\" class=\"light\"></div>\n            <div id=\"green\" class=\"light\"></div>\n        </div>\n\n        <button onclick=\"changeSignal()\">Change Signal</button>\n\n        <p id=\"message\">Ready</p>\n    </div>\n\n    <script>\n        let signal = 0;\n\n        function changeSignal() {\n            // Write JavaScript here\n        }\n    </script>\n\n</body>\n</html>"
+        }
+      ]
+    },
+    {
+      "id": "water-tracker",
+      "title": "Task 3 · Daily Water Reminder",
+      "questions": [
+        {
+          "id": "water-1",
+          "prompt": "Complete the missing HTML, CSS, and JavaScript code to create a water intake tracker. Each time the user drinks a glass of water, they can click a button to update the number of glasses consumed. A reset button starts the count again.",
+          "code": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Water Tracker</title>\n    <style>\n        body {\n            text-align: center;\n            font-family: Arial, sans-serif;\n            margin: 0;\n            padding: 16px;\n            background: #f8fafc;\n        }\n\n        .tracker-card {\n            max-width: 280px;\n            margin: 0 auto;\n            padding: 20px 16px;\n            background: #ffffff;\n            border: 2px solid #e2e8f0;\n            border-radius: 14px;\n            box-shadow: 0 4px 12px rgba(0,0,0,0.06);\n        }\n\n        h2 {\n            font-size: 18px;\n            margin: 0 0 10px;\n            color: #1e293b;\n        }\n\n        .tap-box {\n            font-size: 40px;\n            margin: 6px auto;\n            line-height: 1;\n        }\n\n        .label {\n            font-size: 13px;\n            color: #64748b;\n            margin: 8px 0 4px;\n        }\n\n        #count {\n            font-size: 36px;\n            font-weight: bold;\n            color: #0284c7;\n            margin: 4px 0 14px;\n        }\n\n        .button-group {\n            display: flex;\n            gap: 8px;\n            justify-content: center;\n            margin-bottom: 10px;\n        }\n\n        button {\n            padding: 8px 14px;\n            font-size: 13px;\n            font-weight: 600;\n            border-radius: 6px;\n            border: none;\n            cursor: pointer;\n        }\n\n        .btn-drink {\n            background-color: #0284c7;\n            color: #ffffff;\n        }\n\n        .btn-reset {\n            background-color: #e2e8f0;\n            color: #334155;\n        }\n\n        #message {\n            font-size: 13px;\n            color: #475569;\n            margin: 4px 0 0;\n        }\n\n        /* Write CSS here */\n    </style>\n</head>\n<body>\n\n    <div class=\"tracker-card\">\n        <h2>Daily Water Tracker</h2>\n\n        <div class=\"tap-box\">🚰</div>\n\n        <p class=\"label\">Glasses of water consumed:</p>\n        <p id=\"count\">0</p>\n\n        <div class=\"button-group\">\n            <button class=\"btn-drink\" onclick=\"addWater()\">Drink Water</button>\n            <button class=\"btn-reset\" onclick=\"resetCount()\">Reset</button>\n        </div>\n\n        <p id=\"message\">Keep drinking water!</p>\n    </div>\n\n    <script>\n        let glasses = 0;\n\n        function addWater() {\n            // Write JavaScript here\n        }\n\n        function resetCount() {\n            // Write JavaScript here\n        }\n    </script>\n\n</body>\n</html>"
+        }
+      ]
+    }
+  ],
+  "answerText": {
+    "c-1": "Use sum += n % 10; so each digit is accumulated.",
+    "c-2": "Use #define SQUARE(x) ((x) * (x)) so the argument is evaluated safely.",
+    "c-3": "Initialize max from a[0] (or INT_MIN) so all-negative arrays work.",
+    "c-4": "Use char s[6] = \"hello\"; to leave room for the null terminator.",
+    "c-5": "Pass the address: increment(int *x), update *x, and call increment(&a).",
+    "dsa-1": "Only loop while i < n / 2 so each pair is swapped once.",
+    "dsa-2": "Assign min = j when a[j] is smaller.",
+    "dsa-3": "Advance the bounds with low = mid + 1 and high = mid - 1.",
+    "dsa-4": "Check top >= MAX - 1 before pushing into a MAX-element array.",
+    "dsa-5": "Save next = cur->next before changing cur->next, then advance cur = next.",
+    "python-1": "Copy the list with b = a.copy() (or b = list(a)).",
+    "python-2": "Build independent rows with [[0] * 3 for _ in range(3)].",
+    "python-3": "Test membership with if ch in \"aeiou\":.",
+    "python-4": "Declare global x inside update() before changing it.",
+    "python-5": "Use lengths[w] = len(w) so every word is a separate key.",
+    "dbms-1": "Select dept, COUNT(*) and GROUP BY dept; do not select an ungrouped employee name.",
+    "dbms-2": "Compare salary with a subquery: salary > (SELECT AVG(salary) FROM emp).",
+    "dbms-3": "Add the missing comma: SELECT name, salary FROM emp ...",
+    "dbms-4": "Use WHERE phone IS NULL.",
+    "dbms-5": "Move the aggregate condition to HAVING after GROUP BY dept."
+  },
+  "level2AnswerText": {
+    "traffic-1": "In changeSignal(), cycle signal 0 -> 1 -> 2 -> 0; turn on red (signal===1), yellow (signal===2), green (signal===0 or 3), resetting others to gray.",
+    "water-1": "In addWater(), increment glasses and update #count textContent; in resetCount(), set glasses = 0 and update #count textContent.",
+    "css-1": "Center the container with flexbox and min-height: 100vh; apply the specified card dimensions, border, text colors, italic role, and blue button styles.",
+    "express-1": "Implement GET /students with an optional pass filter, GET /students/:id with a 404 response, and validated POST /students with incrementing IDs and status 201.",
+    "react-1": "Use cart state and immutable state updates; increment existing items up to quantity 5, remove items at zero, and reduce price × quantity for the total."
+  },
+  "level3Questions": [
+    {
+      "id": "rotate-array",
+      "title": "Rotate Array",
+      "prompt": "Rotate the integer array to the right by k positions. Implement the solution in any supported language. Read n and k, then n integers from standard input; print the rotated values separated by spaces.",
+      "inputFormat": "Line 1: n k. Line 2: n integers.",
+      "outputFormat": "Print n space-separated integers after rotation.",
+      "checker": "integer-array",
+      "starterCode": {
+        "python": "def rotate_array(nums, k):\n    # Return nums rotated right by k places.\n    pass\n",
+        "javascript": "function rotateArray(nums, k) {\n  // Return nums rotated right by k places.\n}\n",
+        "c": "void rotateArray(int* nums, int numsSize, int k) {\n    // Rotate the array to the right by k places in-place.\n}\n",
+        "cpp": "#include <vector>\n\nstd::vector<int> rotateArray(std::vector<int>& nums, int k) {\n    // Return nums rotated right by k places.\n    return nums;\n}\n",
+        "java": "import java.util.*;\n\nclass Solution {\n    public int[] rotateArray(int[] nums, int k) {\n        // Return nums rotated right by k places.\n        return nums;\n    }\n}\n",
+        "csharp": "using System;\nusing System.Collections.Generic;\n\npublic class Solution {\n    public int[] RotateArray(int[] nums, int k) {\n        // Return nums rotated right by k places.\n        return nums;\n    }\n}\n"
+      },
+      "examples": [
+        {
+          "input": "7 3\n1 2 3 4 5 6 7",
+          "output": "5 6 7 1 2 3 4"
+        },
+        {
+          "input": "4 2\n-1 -100 3 99",
+          "output": "3 99 -1 -100"
+        }
+      ],
+      "tests": [
+        {
+          "label": "Example 1",
+          "input": "7 3\n1 2 3 4 5 6 7",
+          "expected": "5 6 7 1 2 3 4",
+          "public": true
+        },
+        {
+          "label": "Example 2",
+          "input": "4 2\n-1 -100 3 99",
+          "expected": "3 99 -1 -100",
+          "public": true
+        },
+        {
+          "label": "Single value and large k",
+          "input": "1 9\n8",
+          "expected": "8",
+          "public": false
+        },
+        {
+          "label": "No rotation",
+          "input": "5 0\n1 2 3 4 5",
+          "expected": "1 2 3 4 5",
+          "public": false
+        },
+        {
+          "label": "k larger than array",
+          "input": "6 8\n1 2 3 4 5 6",
+          "expected": "5 6 1 2 3 4",
+          "public": false
+        }
+      ]
+    },
+    {
+      "id": "good-pairs",
+      "title": "Number of Good Pairs",
+      "prompt": "Given an array of integers nums, return the number of good pairs.\n\nA pair (i, j) is called good if nums[i] == nums[j] and i < j.\n\nConstraints:\n• 1 <= nums.length <= 100\n• 1 <= nums[i] <= 100",
+      "inputFormat": "nums = [1,2,3,1,1,3] (or Line 1: n, Line 2: n integers).",
+      "outputFormat": "Print one integer: the number of good pairs.",
+      "checker": "single-integer",
+      "starterCode": {
+        "python": "def num_identical_pairs(nums):\n    # Return the number of good pairs (i, j) where nums[i] == nums[j] and i < j.\n    pass\n",
+        "javascript": "function numIdenticalPairs(nums) {\n  // Return the number of good pairs (i, j) where nums[i] == nums[j] and i < j.\n}\n",
+        "c": "int numIdenticalPairs(int* nums, int numsSize) {\n    // Return the number of good pairs (i, j) where nums[i] == nums[j] and i < j.\n    return 0;\n}\n",
+        "cpp": "#include <vector>\n\nint numIdenticalPairs(std::vector<int>& nums) {\n    // Return the number of good pairs (i, j) where nums[i] == nums[j] and i < j.\n    return 0;\n}\n",
+        "java": "import java.util.*;\n\nclass Solution {\n    public int numIdenticalPairs(int[] nums) {\n        // Return the number of good pairs (i, j) where nums[i] == nums[j] and i < j.\n        return 0;\n    }\n}\n",
+        "csharp": "using System;\nusing System.Collections.Generic;\n\npublic class Solution {\n    public int NumIdenticalPairs(int[] nums) {\n        // Return the number of good pairs (i, j) where nums[i] == nums[j] and i < j.\n        return 0;\n    }\n}\n"
+      },
+      "examples": [
+        {
+          "input": "nums = [1,2,3,1,1,3]",
+          "output": "4\nExplanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed."
+        },
+        {
+          "input": "nums = [1,1,1,1]",
+          "output": "6\nExplanation: Each pair in the array are good."
+        },
+        {
+          "input": "nums = [1,2,3]",
+          "output": "0"
+        }
+      ],
+      "tests": [
+        {
+          "label": "Example 1",
+          "input": "6\n1 2 3 1 1 3",
+          "expected": "4",
+          "public": true
+        },
+        {
+          "label": "Example 2",
+          "input": "4\n1 1 1 1",
+          "expected": "6",
+          "public": true
+        },
+        {
+          "label": "Example 3: All distinct",
+          "input": "3\n1 2 3",
+          "expected": "0",
+          "public": true
+        },
+        {
+          "label": "Single element",
+          "input": "1\n42",
+          "expected": "0",
+          "public": false
+        },
+        {
+          "label": "Multiple duplicate groups",
+          "input": "10\n1 2 1 2 1 2 3 3 4 5",
+          "expected": "7",
+          "public": false
+        }
+      ]
+    },
+    {
+      "id": "longest-palindrome",
+      "title": "Longest Palindromic Substring",
+      "prompt": "Print a longest palindromic substring of the input string. If more than one answer has maximum length, any one is accepted.",
+      "inputFormat": "One line containing a string of English letters and digits.",
+      "outputFormat": "Print one longest palindromic substring.",
+      "checker": "longest-palindrome",
+      "starterCode": {
+        "python": "def longest_palindrome(s):\n    # Return a longest palindromic substring of s.\n    pass\n",
+        "javascript": "function longestPalindrome(s) {\n  // Return a longest palindromic substring of s.\n}\n",
+        "c": "char* longestPalindrome(char* s) {\n    // Return a longest palindromic substring of s.\n    return s;\n}\n",
+        "cpp": "#include <string>\n\nstd::string longestPalindrome(std::string s) {\n    // Return a longest palindromic substring of s.\n    return \"\";\n}\n",
+        "java": "import java.util.*;\n\nclass Solution {\n    public String longestPalindrome(String s) {\n        // Return a longest palindromic substring of s.\n        return \"\";\n    }\n}\n",
+        "csharp": "using System;\n\npublic class Solution {\n    public string LongestPalindrome(string s) {\n        // Return a longest palindromic substring of s.\n        return \"\";\n    }\n}\n"
+      },
+      "examples": [
+        {
+          "input": "babad",
+          "output": "bab (aba is also valid)"
+        },
+        {
+          "input": "cbbd",
+          "output": "bb"
+        }
+      ],
+      "tests": [
+        {
+          "label": "Example 1",
+          "input": "babad",
+          "expected": "bab or aba",
+          "public": true
+        },
+        {
+          "label": "Example 2",
+          "input": "cbbd",
+          "expected": "bb",
+          "public": true
+        },
+        {
+          "label": "One character",
+          "input": "a",
+          "expected": "",
+          "public": false
+        },
+        {
+          "label": "Two distinct characters",
+          "input": "ac",
+          "expected": "",
+          "public": false
+        },
+        {
+          "label": "Long even palindrome",
+          "input": "forgeeksskeegfor",
+          "expected": "",
+          "public": false
+        }
+      ]
+    },
+    {
+      "id": "vertical-words",
+      "title": "Print Words Vertically",
+      "prompt": "Implement print_vertically(sentence) so it returns the vertical rows as a list of strings. The platform passes the input line to your function and prints its returned rows. Preserve leading spaces and omit trailing spaces.",
+      "inputFormat": "One line of uppercase words separated by one space.",
+      "outputFormat": "One vertical row per line. Leading spaces may be needed; trailing spaces are not allowed.",
+      "checker": "exact-output",
+      "starterCode": {
+        "python": "def print_vertically(sentence):\n    # Return the vertical rows as a list of strings.\n    pass\n",
+        "javascript": "function printVertically(sentence) {\n  // Return the vertical rows as an array of strings.\n}\n",
+        "c": "char** printVertically(char* sentence, int* returnSize) {\n    // Return the vertical rows as an array of strings.\n    *returnSize = 0;\n    return NULL;\n}\n",
+        "cpp": "#include <vector>\n#include <string>\n\nstd::vector<std::string> printVertically(std::string sentence) {\n    // Return the vertical rows as a vector of strings.\n    return {};\n}\n",
+        "java": "import java.util.*;\n\nclass Solution {\n    public List<String> printVertically(String sentence) {\n        // Return the vertical rows as a list of strings.\n        return new ArrayList<>();\n    }\n}\n",
+        "csharp": "using System;\nusing System.Collections.Generic;\n\npublic class Solution {\n    public IList<string> PrintVertically(string sentence) {\n        // Return the vertical rows as a list of strings.\n        return new List<string>();\n    }\n}\n"
+      },
+      "examples": [
+        {
+          "input": "HOW ARE YOU",
+          "output": "HAY\nORO\nWEU"
+        },
+        {
+          "input": "TO BE OR NOT TO BE",
+          "output": "TBONTB\nOEROOE\n   T"
+        }
+      ],
+      "tests": [
+        {
+          "label": "Example 1",
+          "input": "HOW ARE YOU",
+          "expected": "HAY\nORO\nWEU",
+          "public": true
+        },
+        {
+          "label": "Example 2",
+          "input": "TO BE OR NOT TO BE",
+          "expected": "TBONTB\nOEROOE\n   T",
+          "public": true
+        },
+        {
+          "label": "Uneven word lengths",
+          "input": "CONTEST IS COMING",
+          "expected": "CIC\nOSO\nN M\nT I\nE N\nS G\nT",
+          "public": false
+        },
+        {
+          "label": "One word",
+          "input": "ABC",
+          "expected": "A\nB\nC",
+          "public": false
+        },
+        {
+          "label": "Single letters",
+          "input": "A BB CCC",
+          "expected": "ABC\n BC\n  C",
+          "public": false
+        }
+      ]
+    },
+    {
+      "id": "ice-cream-bars",
+      "title": "Maximum Ice Cream Bars",
+      "prompt": "Find the maximum number of bars affordable with the given coins. Use a counting-sort approach. Read n and coins, then n prices; print the maximum count.",
+      "inputFormat": "Line 1: n coins. Line 2: n positive prices.",
+      "outputFormat": "Print one integer: the maximum number of bars.",
+      "checker": "single-integer",
+      "starterCode": {
+        "python": "def max_ice_cream(costs, coins):\n    # Return the maximum number of bars that can be purchased.\n    pass\n",
+        "javascript": "function maxIceCream(costs, coins) {\n  // Return the maximum number of bars that can be purchased.\n}\n",
+        "c": "int maxIceCream(int* costs, int costsSize, int coins) {\n    // Return the maximum number of bars that can be purchased.\n    return 0;\n}\n",
+        "cpp": "#include <vector>\n\nint maxIceCream(std::vector<int>& costs, int coins) {\n    // Return the maximum number of bars that can be purchased.\n    return 0;\n}\n",
+        "java": "import java.util.*;\n\nclass Solution {\n    public int maxIceCream(int[] costs, int coins) {\n        // Return the maximum number of bars that can be purchased.\n        return 0;\n    }\n}\n",
+        "csharp": "using System;\nusing System.Collections.Generic;\n\npublic class Solution {\n    public int MaxIceCream(int[] costs, int coins) {\n        // Return the maximum number of bars that can be purchased.\n        return 0;\n    }\n}\n"
+      },
+      "examples": [
+        {
+          "input": "5 7\n1 3 2 4 1",
+          "output": "4"
+        },
+        {
+          "input": "6 5\n10 6 8 7 7 8",
+          "output": "0"
+        }
+      ],
+      "tests": [
+        {
+          "label": "Example 1",
+          "input": "5 7\n1 3 2 4 1",
+          "expected": "4",
+          "public": true
+        },
+        {
+          "label": "Example 2",
+          "input": "6 5\n10 6 8 7 7 8",
+          "expected": "0",
+          "public": true
+        },
+        {
+          "label": "Enough coins for all",
+          "input": "6 20\n1 6 3 1 2 5",
+          "expected": "6",
+          "public": false
+        },
+        {
+          "label": "Exact budget",
+          "input": "4 6\n1 2 3 4",
+          "expected": "3",
+          "public": false
+        },
+        {
+          "label": "One affordable bar",
+          "input": "1 1\n1",
+          "expected": "1",
+          "public": false
+        }
+      ]
+    },
+    {
+      "id": "duplicate-zeros",
+      "title": "Duplicate Zeros",
+      "prompt": "Duplicate every zero in-place, shifting remaining values right and discarding values past the fixed array length. Read n and n integers; print the resulting array.",
+      "inputFormat": "Line 1: n. Line 2: n integers.",
+      "outputFormat": "Print the modified n integers separated by spaces.",
+      "checker": "integer-array",
+      "starterCode": {
+        "python": "def duplicate_zeros(nums):\n    # Modify nums in place or return the modified list.\n    pass\n",
+        "javascript": "function duplicateZeros(nums) {\n  // Modify nums in place or return the modified array.\n}\n",
+        "c": "void duplicateZeros(int* arr, int arrSize) {\n    // Modify arr in-place duplicating each occurrence of zero.\n}\n",
+        "cpp": "#include <vector>\n\nvoid duplicateZeros(std::vector<int>& arr) {\n    // Modify arr in-place or return modified vector.\n}\n",
+        "java": "import java.util.*;\n\nclass Solution {\n    public void duplicateZeros(int[] arr) {\n        // Modify arr in-place duplicating each occurrence of zero.\n    }\n}\n",
+        "csharp": "using System;\n\npublic class Solution {\n    public void DuplicateZeros(int[] arr) {\n        // Modify arr in-place duplicating each occurrence of zero.\n    }\n}\n"
+      },
+      "examples": [
+        {
+          "input": "8\n1 0 2 3 0 4 5 0",
+          "output": "1 0 0 2 3 0 0 4"
+        },
+        {
+          "input": "3\n1 2 3",
+          "output": "1 2 3"
+        }
+      ],
+      "tests": [
+        {
+          "label": "Example 1",
+          "input": "8\n1 0 2 3 0 4 5 0",
+          "expected": "1 0 0 2 3 0 0 4",
+          "public": true
+        },
+        {
+          "label": "Example 2",
+          "input": "3\n1 2 3",
+          "expected": "1 2 3",
+          "public": true
+        },
+        {
+          "label": "Zero at the end",
+          "input": "4\n1 2 3 0",
+          "expected": "1 2 3 0",
+          "public": false
+        },
+        {
+          "label": "All zeros",
+          "input": "5\n0 0 0 0 0",
+          "expected": "0 0 0 0 0",
+          "public": false
+        },
+        {
+          "label": "Zero at the start",
+          "input": "5\n0 1 2 3 4",
+          "expected": "0 0 1 2 3",
+          "public": false
+        }
+      ]
+    },
+    {
+      "id": "sort-even-odd-indices",
+      "title": "Sort Even and Odd Indices Independently",
+      "prompt": "Sort values at even indices in non-decreasing order and values at odd indices in non-increasing order. Read n and n integers; print the rearranged array.",
+      "inputFormat": "Line 1: n. Line 2: n integers.",
+      "outputFormat": "Print n space-separated integers.",
+      "checker": "integer-array",
+      "starterCode": {
+        "python": "def sort_even_odd(nums):\n    # Return nums with even indices ascending and odd indices descending.\n    pass\n",
+        "javascript": "function sortEvenOdd(nums) {\n  // Return nums with even indices ascending and odd indices descending.\n}\n",
+        "c": "void sortEvenOdd(int* nums, int numsSize) {\n    // Sort even indices ascending and odd descending in-place.\n}\n",
+        "cpp": "#include <vector>\n\nstd::vector<int> sortEvenOdd(std::vector<int>& nums) {\n    // Return nums with even indices ascending and odd indices descending.\n    return nums;\n}\n",
+        "java": "import java.util.*;\n\nclass Solution {\n    public int[] sortEvenOdd(int[] nums) {\n        // Return nums with even indices ascending and odd indices descending.\n        return nums;\n    }\n}\n",
+        "csharp": "using System;\nusing System.Collections.Generic;\n\npublic class Solution {\n    public int[] SortEvenOdd(int[] nums) {\n        // Return nums with even indices ascending and odd indices descending.\n        return nums;\n    }\n}\n"
+      },
+      "examples": [
+        {
+          "input": "4\n4 1 2 3",
+          "output": "2 3 4 1"
+        },
+        {
+          "input": "2\n2 1",
+          "output": "2 1"
+        }
+      ],
+      "tests": [
+        {
+          "label": "Example 1",
+          "input": "4\n4 1 2 3",
+          "expected": "2 3 4 1",
+          "public": true
+        },
+        {
+          "label": "Example 2",
+          "input": "2\n2 1",
+          "expected": "2 1",
+          "public": true
+        },
+        {
+          "label": "Odd length",
+          "input": "5\n5 4 3 2 1",
+          "expected": "1 4 3 2 5",
+          "public": false
+        },
+        {
+          "label": "Repeated values",
+          "input": "6\n3 3 2 2 1 1",
+          "expected": "1 3 2 2 3 1",
+          "public": false
+        },
+        {
+          "label": "Already ordered",
+          "input": "5\n1 5 2 4 3",
+          "expected": "1 5 2 4 3",
+          "public": false
+        }
+      ]
+    },
+    {
+      "id": "lucky-numbers-matrix",
+      "title": "Lucky Numbers in a Matrix",
+      "prompt": "A lucky number is the minimum in its row and maximum in its column. Print every lucky number in any order. Read m and n, then m × n matrix values.",
+      "inputFormat": "Line 1: m n. Then m rows, each with n integers.",
+      "outputFormat": "Print the lucky number values separated by spaces. An empty result may be printed as a blank line.",
+      "checker": "integer-set",
+      "starterCode": {
+        "python": "def lucky_numbers(matrix):\n    # Return all lucky numbers in the matrix.\n    pass\n",
+        "javascript": "function luckyNumbers(matrix) {\n  // Return all lucky numbers in the matrix.\n}\n",
+        "c": "int* luckyNumbers(int** matrix, int matrixSize, int* matrixColSize, int* returnSize) {\n    // Return all lucky numbers in the matrix.\n    *returnSize = 0;\n    return NULL;\n}\n",
+        "cpp": "#include <vector>\n\nstd::vector<int> luckyNumbers(std::vector<std::vector<int>>& matrix) {\n    // Return all lucky numbers in the matrix.\n    return {};\n}\n",
+        "java": "import java.util.*;\n\nclass Solution {\n    public List<Integer> luckyNumbers(int[][] matrix) {\n        // Return all lucky numbers in the matrix.\n        return new ArrayList<>();\n    }\n}\n",
+        "csharp": "using System;\nusing System.Collections.Generic;\n\npublic class Solution {\n    public IList<int> LuckyNumbers(int[][] matrix) {\n        // Return all lucky numbers in the matrix.\n        return new List<int>();\n    }\n}\n"
+      },
+      "examples": [
+        {
+          "input": "3 3\n3 7 8\n9 11 13\n15 16 17",
+          "output": "15"
+        },
+        {
+          "input": "3 4\n1 10 4 2\n9 3 8 7\n15 16 17 12",
+          "output": "12"
+        }
+      ],
+      "tests": [
+        {
+          "label": "Example 1",
+          "input": "3 3\n3 7 8\n9 11 13\n15 16 17",
+          "expected": "15",
+          "public": true
+        },
+        {
+          "label": "Example 2",
+          "input": "3 4\n1 10 4 2\n9 3 8 7\n15 16 17 12",
+          "expected": "12",
+          "public": true
+        },
+        {
+          "label": "Small matrix",
+          "input": "2 2\n7 8\n1 2",
+          "expected": "7",
+          "public": false
+        },
+        {
+          "label": "No lucky number",
+          "input": "2 2\n1 4\n3 2",
+          "expected": "No values",
+          "public": false
+        },
+        {
+          "label": "Single cell",
+          "input": "1 1\n9",
+          "expected": "9",
+          "public": false
+        }
+      ]
+    }
+  ],
+  "answerPatterns": {
+    "c-1": [
+      "sum\\+=n%10",
+      "sum=sum\\+n%10"
+    ],
+    "c-2": [
+      "#definesquare\\(x\\)\\(\\(x\\)\\*\\(x\\)\\)"
+    ],
+    "c-3": [
+      "max=a\\[0\\]",
+      "max=int_min"
+    ],
+    "c-4": [
+      "chars\\[6\\]",
+      "chars\\[\\]=\\\"hello\\\"",
+      "chars\\[(?:6|[0-9]+)\\]"
+    ],
+    "c-5": [
+      "voidincrement\\(int\\*x\\)",
+      "increment\\(&a\\)"
+    ],
+    "dsa-1": [
+      "i<n/2"
+    ],
+    "dsa-2": [
+      "min=j"
+    ],
+    "dsa-3": [
+      "low=mid\\+1",
+      "high=mid-1"
+    ],
+    "dsa-4": [
+      "top==max-1",
+      "top>=max-1"
+    ],
+    "dsa-5": [
+      "next=cur->next",
+      "cur->next=prev",
+      "cur=next"
+    ],
+    "python-1": [
+      "b=a\\.copy\\(\\)",
+      "b=list\\(a\\)"
+    ],
+    "python-2": [
+      "\\[\\[0\\]\\*3for\\w+inrange\\(3\\)\\]"
+    ],
+    "python-3": [
+      "chinastring\\.ascii_lowercase",
+      "ifchin[\\\"']aeiou[\\\"']"
+    ],
+    "python-4": [
+      "globalx",
+      "x=x\\+5"
+    ],
+    "python-5": [
+      "lengths\\[w\\]=len\\(w\\)"
+    ],
+    "dbms-1": [
+      "selectdept,count\\(\\*\\)fromempgroupbydept",
+      "selectdept,count\\(\\*\\)as\\w+fromempgroupbydept"
+    ],
+    "dbms-2": [
+      "salary>\\(selectavg\\(salary\\)fromemp\\)"
+    ],
+    "dbms-3": [
+      "selectname,salaryfromemp"
+    ],
+    "dbms-4": [
+      "phoneisnull"
+    ],
+    "dbms-5": [
+      "groupbydepthavingmax\\(salary\\)>40000",
+      "groupbydepthavingmax\\(salary\\)>=40001"
+    ]
+  },
+  "level2Patterns": {
+    "traffic-1": [
+      "changesignal",
+      "id=[\"']?red",
+      "id=[\"']?yellow",
+      "id=[\"']?green",
+      "red",
+      "yellow",
+      "green",
+      "(?:signal|color|light)",
+      "(?:background|style|class)"
+    ],
+    "water-1": [
+      "addwater",
+      "resetcount",
+      "id=[\"']?count",
+      "(?:glasses\\+\\+|\\+\\+glasses|glasses\\+=1|glasses=glasses\\+1)",
+      "glasses\\s*=\\s*0",
+      "(?:textcontent|innertext|innerhtml)",
+      "count"
+    ],
+    "css-1": [
+      "\\.container\\{[^}]*display:flex",
+      "justify-content:center",
+      "align-items:center",
+      "(?:min-height|height):100vh",
+      "\\.card\\{[^}]*width:250px",
+      "padding:20px",
+      "text-align:center",
+      "(?:border:[^;}]*2px[^;}]*solid[^;}]*#333|border:[^;}]*solid[^;}]*2px[^;}]*#333|border:[^;}]*2px[^;}]*#333[^;}]*solid|border-width:2px|border:2pxsolid|border:solid2px)",
+      "border(?:-top-left)?-radius:10px",
+      "\\.title\\{[^}]*color:#1a73e8",
+      "\\.role\\{[^}]*color:#666",
+      "font-style:italic",
+      "\\.btn\\{[^}]*background(?:-color)?:(?:blue|#1a73e8|#007bff|#00f)",
+      "color:white",
+      "border:(?:none|0)",
+      "border-radius:5px",
+      "padding:8px"
+    ],
+    "express-1": [
+      "app\\.get\\(['\\\"]\\/students['\\\"]",
+      "req\\.query\\.pass",
+      "marks\\s*>=\\s*50",
+      "app\\.get\\(['\\\"]\\/students\\/:id['\\\"]",
+      "req\\.params\\.id",
+      "notfound",
+      "app\\.post\\(['\\\"]\\/students['\\\"]",
+      "(?:name\\.trim|!name|name===|name\\.length|typeofname)",
+      "marks",
+      "(?:status\\(400\\)|sendstatus\\(400\\))",
+      "invaliddata",
+      "status\\(201\\)",
+      "students\\.push",
+      "(?:students\\.length\\s*\\+\\s*1|id:4|id:\\s*4|students\\[students\\.length-1\\]\\.id\\+1)",
+      "res\\.(?:status\\(200\\)\\.)?json\\(",
+      "filter\\(",
+      "status\\(404\\)",
+      "(?:marks(?:\\)|<|<=|>=|>|!=|==)|<0|<=0|>=0|0>|0<=)",
+      "(?:marks(?:\\)|<|<=|>=|>|!=|==)|>100|>=100|<=100|<101|100<|100<=)"
+    ],
+    "react-1": [
+      "usestate",
+      "(?:const|let)\\[cart,setcart\\]",
+      "(?:functionaddtocart|constaddtocart=)",
+      "(?:functionchangeqty|constchangeqty=)",
+      "setcart",
+      "\\.filter\\(",
+      "\\.map\\(",
+      "qty",
+      "(?:math\\.min|<5|<=5|>5|5<=|===5)",
+      "5",
+      "price",
+      "(?:reduce|for|foreach)"
+    ]
+  }
+}

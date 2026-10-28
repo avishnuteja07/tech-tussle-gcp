@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e2440">
+  <title>Student Sign In | MITS</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="login-card" aria-labelledby="page-title">
+      <img class="college-logo" src="/images/mit-logo.png" alt="Madanapalle Institute of Technology & Science logo">
+      <p class="eyebrow">MADANAPALLE INSTITUTE OF TECHNOLOGY &amp; SCIENCE</p>
+      <div id="login-view">
+        <h1 id="page-title">Student sign in</h1>
+        <button id="admin-mode-button" class="text-button" type="button">Administrator sign in</button>
+        <form id="login-form">
+          <label for="study-year">Year of study</label>
+          <select id="study-year" name="studyYear" required>
+            <option value="1">I</option>
+            <option value="2">II</option>
+            <option value="3">III</option>
+          </select>
+          <label for="registration-number">Registration Number</label>
+          <input id="registration-number" name="registrationNumber" type="text" placeholder="A1B2C3D4E5" autocomplete="username" required minlength="10" maxlength="10" pattern="[A-Za-z0-9]{10}" title="Enter exactly 10 letters or digits">
+          <label for="password">Password</label>
+          <div class="password-wrap">
+            <input id="password" name="password" type="password" autocomplete="current-password" required>
+            <button class="show-password" type="button" aria-label="Show password">Show</button>
+          </div>
+          <p id="message" class="message" role="status" aria-live="polite"></p>
+          <button class="submit-button" type="submit"><span>Sign in</span><span aria-hidden="true">→</span></button>
+        </form>
+      </div>
+      <section id="admin-login-view" hidden>
+        <h1>Administrator sign in</h1>
+        <form id="admin-login-form">
+          <label for="admin-username">Administrator username</label>
+          <input id="admin-username" name="username" autocomplete="username" required>
+          <label for="admin-password">Password</label>
+          <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+          <p id="admin-login-message" class="message" role="status"></p>
+          <button class="submit-button" type="submit"><span>Sign in as admin</span><span aria-hidden="true">→</span></button>
+        </form>
+        <button id="student-mode-button" class="text-button" type="button">Student sign in</button>
+      </section>
+      <section id="admin-view" hidden>
+        <div class="admin-heading"><div><span class="level-tag">ADMIN</span><h1 id="admin-title">Level 1 activity</h1><p>Live attempt counts and leaderboard</p></div><label class="admin-level-picker">Level <select id="admin-level"><option value="1">Level 1 · Bug Smash</option><option value="2">Level 2 · Code Rescue</option><option value="3">Level 3 · Algorithm Challenge</option></select></label><button id="admin-logout" class="text-button" type="button">Sign out</button></div>
+        <nav class="admin-tabs" aria-label="Administrator sections">
+          <button id="admin-activity-tab" class="admin-tab active" type="button">Live activity</button>
+          <button id="admin-students-tab" class="admin-tab" type="button">Students</button>
+        </nav>
+        <div id="admin-activity-panel">
+          <div id="admin-stats" class="admin-stats"></div>
+          <div class="admin-cohorts" id="admin-cohorts"></div>
+          <section class="leaderboard-panel"><div class="leaderboard-heading"><h2>Live leaderboard</h2><span id="admin-updated" class="admin-updated"></span></div><div id="admin-leaderboard" class="leaderboard-content"></div></section>
+        </div>
+        <section id="admin-students-panel" class="student-admin-panel" hidden>
+          <div class="student-admin-heading"><div><h2>Student accounts</h2><p>Add students, update account details, or import a workbook.</p></div>
+            <div class="student-admin-actions"><button id="download-student-template" class="secondary-button" type="button">Download Excel template</button><button id="export-students" class="secondary-button" type="button">Export students</button></div>
+          </div>
+          <form id="student-form" class="student-form">
+            <input id="student-edit-original" type="hidden">
+            <div><label for="managed-registration">Registration number</label><input id="managed-registration" name="registrationNumber" placeholder="A1B2C3D4E5" minlength="10" maxlength="10" pattern="[A-Za-z0-9]{10}" title="Enter exactly 10 letters or digits" autocomplete="off" required></div>
+            <div><label for="managed-year">Year of study</label><select id="managed-year" name="studyYear" required><option value="1">I</option><option value="2">II</option><option value="3">III</option></select></div>
+            <div><label for="managed-password">Password</label><input id="managed-password" name="password" type="password" minlength="8" value="tech@123" autocomplete="new-password"><small id="managed-password-help">Default password: tech@123</small></div>
+            <div class="student-form-actions"><button id="save-student" class="submit-button" type="submit"><span>Save student</span><span aria-hidden="true">→</span></button><button id="cancel-student-edit" class="secondary-button" type="button" hidden>Cancel edit</button></div>
+            <p id="student-form-message" class="message" role="status" aria-live="polite"></p>
+          </form>
+          <div class="student-import-panel"><div><strong>Import from Excel</strong><p>Use the downloaded template. Each row needs a 10-character Registration Number and Year (I, II, or III). Imported students use the default password.</p></div>
+            <div class="student-import-actions"><input id="student-workbook" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"><button id="import-students" class="secondary-button" type="button">Import workbook</button></div>
+            <p id="student-import-message" class="message" role="status" aria-live="polite"></p>
+          </div>
+          <div class="student-list-heading"><h3>Registered students</h3><button id="refresh-students" class="text-button" type="button">Refresh list</button></div>
+          <div id="student-list" class="student-list" aria-live="polite">Sign in to load student accounts.</div>
+        </section>
+      </section>
+      <section id="dashboard-view" hidden>
+        <p class="welcome" id="welcome"></p>
+        <h1>BugSmash</h1>
+        <div class="level-card" id="level1-card">
+          <span class="level-tag">LEVEL 1</span>
+          <h2>Bug Smash · Level 1</h2>
+          <p id="level-details"></p>
+          <p id="level1-access-message">Available — complete this level to unlock Level 2.</p>
+          <button id="start-level" class="submit-button" type="button"><span>Start Level 1</span><span aria-hidden="true">→</span></button>
+        </div>
+        <div class="level-card level-locked" id="level2-card">
+          <span class="level-tag">LEVEL 2</span>
+          <h2>Code Rescue · Level 2</h2>
+          <p id="level2-access-message">Complete Level 1 to unlock this level.</p>
+          <p>25 minutes · 3 questions · 5 tests per question · 2 marks per test · 30 marks total</p>
+          <button id="start-level-2" class="submit-button" type="button" disabled><span>Start Level 2</span><span aria-hidden="true">→</span></button>
+        </div>
+        <div class="level-card level-locked" id="level3-card">
+          <span class="level-tag">LEVEL 3</span>
+          <h2>Algorithm Challenge · Level 3</h2>
+          <p id="level3-access-message">Locked — complete Level 2 to unlock this level.</p>
+          <p>30 minutes · 2 different questions · 5 test cases each · 5 marks per test · 50 marks total</p>
+          <button id="start-level-3" class="submit-button" type="button" disabled><span>Start Level 3</span><span aria-hidden="true">→</span></button>
+        </div>
+        <button id="sign-out" class="text-button" type="button">Sign out</button>
+      </section>
+      <dialog id="level-pin-dialog" class="pin-dialog" aria-labelledby="level-pin-title">
+        <form id="level-pin-form" class="pin-dialog-form">
+          <h2 id="level-pin-title">Level access PIN</h2>
+          <label for="level-pin">PIN</label>
+          <input id="level-pin" type="password" required autocomplete="off" inputmode="text">
+          <p id="level-pin-message" class="message" role="status" aria-live="polite"></p>
+          <div class="pin-dialog-actions">
+            <button id="cancel-level-pin" class="secondary-button" type="button">Cancel</button>
+            <button class="submit-button" type="submit"><span>Continue</span><span aria-hidden="true">→</span></button>
+          </div>
+        </form>
+      </dialog>
+      <section id="quiz-view" hidden>
+        <div class="quiz-topline"><div><span class="level-tag">LEVEL 1 · BUGSMASH</span><h1 id="quiz-title">Challenge</h1></div><div class="timer-box"><span>TIME LEFT</span><strong id="timer">15:00</strong></div><button id="quiz-sign-out" class="text-button" type="button">Save &amp; sign out</button></div>
+        <p id="quiz-instructions" class="quiz-instructions"></p>
+        <div id="integrity-notice" class="integrity-notice" role="status" aria-live="assertive" hidden>
+          <span id="integrity-notice-text"></span>
+          <button id="enter-fullscreen" type="button">Enter fullscreen</button>
+        </div>
+        <div id="question-picker" class="question-picker" hidden></div>
+        <div id="questions" class="questions"></div>
+        <p id="quiz-message" class="message" role="status" aria-live="polite"></p>
+        <button id="submit-quiz" class="submit-button" type="button"><span>Submit answers</span><span aria-hidden="true">→</span></button>
+      </section>
+      <section id="submitted-view" hidden>
+        <div class="completion-celebration">
+          <div id="confetti" class="confetti" aria-hidden="true"></div>
+          <div class="submitted-icon">✓</div>
+        </div>
+        <h1 id="submitted-title">Successfully completed!</h1>
+        <p id="submitted-message" class="intro"></p>
+        <button id="return-dashboard" class="submit-button" type="button"><span>Return to levels</span><span aria-hidden="true">→</span></button>
+        <button id="result-sign-out" class="text-button" type="button">Sign out</button>
+      </section>
+    </section>
+    <footer>Learning today, leading tomorrow</footer>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>

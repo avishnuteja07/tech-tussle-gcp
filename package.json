@@ -1,0 +1,26 @@
+{
+  "name": "mits-student-login",
+  "version": "2.0.0",
+  "private": true,
+  "description": "MITS student login and timed coding challenge platform using Express and PostgreSQL",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "migrate": "node src/database/migrate.js",
+    "seed:dev": "node src/database/seeds/seed-development.js",
+    "test": "node --test tests/unit/*.test.js tests/integration/*.test.js",
+    "add-admin": "node manage.js add-admin",
+    "users": "node manage.js list-users",
+    "add-user": "node manage.js add-user",
+    "list-attempts": "node manage.js list-attempts"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "pg": "^8.13.1",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+  }
+}
